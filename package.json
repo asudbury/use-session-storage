@@ -50,7 +50,7 @@
   "bugs": {
     "url": "https://github.com/your-username/use-session-storage/issues"
   },
-  "homepage": "https://github.com/your-username/use-session-storage#readme",
+  "homepage": "https://asudbury.github.io/use-session-storage",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -84,6 +84,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.0",
+    "gh-pages": "^6.3.0",
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
