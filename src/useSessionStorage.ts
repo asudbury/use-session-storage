@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from 'react'
 
 /**
  * Configuration options for the useSessionStorage hook
@@ -11,31 +11,31 @@ export interface UseSessionStorageOptions<T> {
    */
   serializer?: {
     /** Function to parse a string value from session storage */
-    parse: (value: string) => T;
+    parse: (value: string) => T
     /** Function to stringify a value for session storage */
-    stringify: (value: T) => string;
-  };
+    stringify: (value: T) => string
+  }
   /**
    * Optional validator function to validate parsed values
    * @param value - The parsed value to validate
    * @returns The validated value
    */
-  validator?: (value: any) => T;
+  validator?: (value: any) => T
   /**
    * Debounce delay in milliseconds for write operations
    * @default 0
    */
-  debounceMs?: number;
+  debounceMs?: number
   /**
    * Whether to sync changes across multiple instances/tabs
    * @default true
    */
-  syncAcrossInstances?: boolean;
+  syncAcrossInstances?: boolean
   /**
    * Error handler callback
    * @param error - The error that occurred
    */
-  onError?: (error: Error) => void;
+  onError?: (error: Error) => void
 }
 
 /**
@@ -43,13 +43,13 @@ export interface UseSessionStorageOptions<T> {
  */
 export interface UseSessionStorageActions {
   /** Whether a storage operation is currently in progress */
-  loading: boolean;
+  loading: boolean
   /** The last error that occurred, if any */
-  error: Error | null;
+  error: Error | null
   /** Function to remove the value from session storage */
-  remove: () => void;
+  remove: () => void
   /** Function to reset the value to the default value */
-  reset: () => void;
+  reset: () => void
 }
 
 /**
@@ -63,15 +63,15 @@ export type UseSessionStorageReturn<T> = [
   (value: T | ((prevValue: T) => T)) => void,
   /** Actions and state information */
   UseSessionStorageActions
-];
+]
 
 /**
  * Default serializer using JSON.parse and JSON.stringify
  */
 const defaultSerializer = {
   parse: JSON.parse,
-  stringify: JSON.stringify,
-};
+  stringify: JSON.stringify
+}
 
 /**
  * Sets a value in session storage with error handling and dispatches a custom event for cross-instance sync.
@@ -89,23 +89,23 @@ const getStorageValue = <T>(
   serializer: typeof defaultSerializer,
   validator?: (value: any) => T
 ): T => {
-  if (typeof window === "undefined") {
-    return defaultValue;
+  if (typeof window === 'undefined') {
+    return defaultValue
   }
 
   try {
-    const item = window.sessionStorage.getItem(key);
+    const item = window.sessionStorage.getItem(key)
     if (item === null) {
-      return defaultValue;
+      return defaultValue
     }
 
-    const parsed = serializer.parse(item);
-    return typeof validator === "function" ? validator(parsed) : parsed;
+    const parsed = serializer.parse(item)
+    return typeof validator === 'function' ? validator(parsed) : parsed
   } catch (error) {
-    console.warn(`Error reading sessionStorage key "${key}":`, error);
-    return defaultValue;
+    console.warn(`Error reading sessionStorage key "${key}":`, error)
+    return defaultValue
   }
-};
+}
 
 /**
  * Sets a value in session storage with error handling
@@ -120,23 +120,23 @@ const setStorageValue = <T>(
   value: T,
   serializer: typeof defaultSerializer
 ): void => {
-  if (typeof window === "undefined") {
-    return;
+  if (typeof window === 'undefined') {
+    return
   }
 
   try {
-    const serializedValue = serializer.stringify(value);
-    window.sessionStorage.setItem(key, serializedValue);
+    const serializedValue = serializer.stringify(value)
+    window.sessionStorage.setItem(key, serializedValue)
     window.dispatchEvent(
-      new CustomEvent("sessionStorageChange", {
-        detail: { key, value },
+      new CustomEvent('sessionStorageChange', {
+        detail: { key, value }
       })
-    );
+    )
   } catch (error) {
-    console.error(`Error setting sessionStorage key "${key}":`, error);
-    throw error;
+    console.error(`Error setting sessionStorage key "${key}":`, error)
+    throw error
   }
-};
+}
 
 /**
  * Removes a value from session storage with error handling and dispatches a custom event for cross-instance sync.
@@ -146,22 +146,22 @@ const setStorageValue = <T>(
  * @returns {void}
  */
 const removeStorageValue = (key: string): void => {
-  if (typeof window === "undefined") {
-    return;
+  if (typeof window === 'undefined') {
+    return
   }
 
   try {
-    window.sessionStorage.removeItem(key);
+    window.sessionStorage.removeItem(key)
     window.dispatchEvent(
-      new CustomEvent("sessionStorageChange", {
-        detail: { key, value: null },
+      new CustomEvent('sessionStorageChange', {
+        detail: { key, value: null }
       })
-    );
+    )
   } catch (error) {
-    console.error(`Error removing sessionStorage key "${key}":`, error);
-    throw error;
+    console.error(`Error removing sessionStorage key "${key}":`, error)
+    throw error
   }
-};
+}
 
 /**
  * Custom hook for debouncing function calls
@@ -174,21 +174,21 @@ const useDebounce = <T extends (...args: any[]) => any>(
   callback: T,
   delay: number
 ): T => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   return useCallback(
     ((...args: Parameters<T>) => {
       if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current)
       }
 
       timeoutRef.current = setTimeout(() => {
-        callback(...args);
-      }, delay);
+        callback(...args)
+      }, delay)
     }) as T,
     [callback, delay]
-  );
-};
+  )
+}
 
 /**
  * A powerful React hook for managing session storage with TypeScript support,
@@ -209,7 +209,7 @@ const useDebounce = <T extends (...args: any[]) => any>(
  * });
  * ```
  */
-export function useSessionStorage<T>(
+export function useSessionStorage<T> (
   key: string,
   defaultValue: T,
   options: UseSessionStorageOptions<T> = {}
@@ -219,29 +219,29 @@ export function useSessionStorage<T>(
     validator,
     debounceMs = 0,
     syncAcrossInstances = true,
-    onError,
-  } = options;
+    onError
+  } = options
 
   // Initialize state with value from session storage
   const [storedValue, setStoredValue] = useState<T>(() =>
     getStorageValue(key, defaultValue, serializer, validator)
-  );
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  )
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<Error | null>(null)
 
-  const isInitialMount = useRef(true);
-  const onErrorRef = useRef(onError);
-  onErrorRef.current = onError;
+  const isInitialMount = useRef(true)
+  const onErrorRef = useRef(onError)
+  onErrorRef.current = onError
 
   /**
    * Handles errors by setting error state and calling onError callback
    */
   const handleError = useCallback((err: Error) => {
-    setError(err);
+    setError(err)
     if (onErrorRef.current !== null && onErrorRef.current !== undefined) {
-      onErrorRef.current(err);
+      onErrorRef.current(err)
     }
-  }, []);
+  }, [])
 
   /**
    * Internal function to set value in session storage
@@ -249,23 +249,23 @@ export function useSessionStorage<T>(
   const setValueInternal = useCallback(
     (value: T) => {
       try {
-        setLoading(true);
-        setError(null);
-        setStorageValue(key, value, serializer);
-        setStoredValue(value);
+        setLoading(true)
+        setError(null)
+        setStorageValue(key, value, serializer)
+        setStoredValue(value)
       } catch (err) {
-        handleError(err as Error);
+        handleError(err as Error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     },
     [key, serializer, handleError]
-  );
+  )
 
   /**
    * Debounced version of setValueInternal
    */
-  const debouncedSetValue = useDebounce(setValueInternal, debounceMs);
+  const debouncedSetValue = useDebounce(setValueInternal, debounceMs)
 
   /**
    * Public function to set a new value in session storage
@@ -274,26 +274,26 @@ export function useSessionStorage<T>(
   const setValue = useCallback(
     (value: T | ((prevValue: T) => T)) => {
       const newValue =
-        typeof value === "function"
+        typeof value === 'function'
           ? (value as (prevValue: T) => T)(storedValue)
-          : value;
+          : value
 
       if (validator !== null && validator !== undefined) {
         try {
-          const validatedValue = validator(newValue);
+          const validatedValue = validator(newValue)
           if (debounceMs > 0) {
-            debouncedSetValue(validatedValue);
+            debouncedSetValue(validatedValue)
           } else {
-            setValueInternal(validatedValue);
+            setValueInternal(validatedValue)
           }
         } catch (err) {
-          handleError(err as Error);
+          handleError(err as Error)
         }
       } else {
         if (debounceMs > 0) {
-          debouncedSetValue(newValue);
+          debouncedSetValue(newValue)
         } else {
-          setValueInternal(newValue);
+          setValueInternal(newValue)
         }
       }
     },
@@ -303,73 +303,73 @@ export function useSessionStorage<T>(
       debounceMs,
       debouncedSetValue,
       setValueInternal,
-      handleError,
+      handleError
     ]
-  );
+  )
 
   /**
    * Removes the value from session storage and resets to default
    */
   const remove = useCallback(() => {
     try {
-      setLoading(true);
-      setError(null);
-      removeStorageValue(key);
-      setStoredValue(defaultValue);
+      setLoading(true)
+      setError(null)
+      removeStorageValue(key)
+      setStoredValue(defaultValue)
     } catch (err) {
-      handleError(err as Error);
+      handleError(err as Error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [key, defaultValue, handleError]);
+  }, [key, defaultValue, handleError])
 
   /**
    * Resets the value to the default value
    */
   const reset = useCallback(() => {
-    setValue(defaultValue);
-  }, [setValue, defaultValue]);
+    setValue(defaultValue)
+  }, [setValue, defaultValue])
 
   // Effect to handle cross-instance synchronization
   useEffect(() => {
-    if (!syncAcrossInstances) return;
+    if (!syncAcrossInstances) return
 
     const handleStorageChange = (e: CustomEvent): void => {
-      const { key: changedKey, value } = e.detail;
+      const { key: changedKey, value } = e.detail
       if (changedKey === key) {
         if (value === null) {
-          setStoredValue(defaultValue);
+          setStoredValue(defaultValue)
         } else {
           try {
             const validatedValue =
               validator !== null && validator !== undefined
                 ? validator(value)
-                : value;
-            setStoredValue(validatedValue as T);
+                : value
+            setStoredValue(validatedValue as T)
           } catch (err) {
-            handleError(err as Error);
+            handleError(err as Error)
           }
         }
       }
-    };
+    }
 
     window.addEventListener(
-      "sessionStorageChange",
+      'sessionStorageChange',
       handleStorageChange as EventListener
-    );
+    )
     return () => {
       window.removeEventListener(
-        "sessionStorageChange",
+        'sessionStorageChange',
         handleStorageChange as EventListener
-      );
-    };
-  }, [key, defaultValue, validator, syncAcrossInstances, handleError]);
+      )
+    }
+  }, [key, defaultValue, validator, syncAcrossInstances, handleError])
 
   // Effect to sync with external changes to session storage
   useEffect(() => {
     if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
+      isInitialMount.current = false
+      return
     }
 
     const currentValue = getStorageValue(
@@ -377,11 +377,11 @@ export function useSessionStorage<T>(
       defaultValue,
       serializer,
       validator
-    );
+    )
     if (currentValue !== storedValue) {
-      setStoredValue(currentValue);
+      setStoredValue(currentValue)
     }
-  }, [key, defaultValue, serializer, validator, storedValue]);
+  }, [key, defaultValue, serializer, validator, storedValue])
 
   return [
     storedValue,
@@ -390,9 +390,9 @@ export function useSessionStorage<T>(
       loading,
       error,
       remove,
-      reset,
-    },
-  ];
+      reset
+    }
+  ]
 }
 
-export default useSessionStorage;
+export default useSessionStorage
