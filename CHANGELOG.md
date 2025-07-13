@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial release of useSessionStorage hook
 - TypeScript support with generic types
 - Automatic JSON serialization/deserialization
@@ -20,21 +21,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Jest testing suite with 100% coverage
 
 ### Changed
+
 - N/A
 
 ### Deprecated
+
 - N/A
 
 ### Removed
+
 - N/A
 
 ### Fixed
+
 - N/A
 
 ### Security
+
 - N/A
 
 ## [1.0.0] - 2025-07-06
 
 ### Added
+
 - Initial release

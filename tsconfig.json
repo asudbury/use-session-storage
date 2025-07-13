@@ -28,12 +28,12 @@
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": true
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "dist",
+    "storybook-static",
+    "example.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.stories.ts",

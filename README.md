@@ -24,10 +24,13 @@ npm install use-session-storage
 ## 🚀 Quick Start
 
 ```tsx
-import useSessionStorage from 'use-session-storage';
+import useSessionStorage from "use-session-storage";
 
 function MyComponent() {
-  const [value, setValue, { loading, error, remove }] = useSessionStorage('my-key', 'default-value');
+  const [value, setValue, { loading, error, remove }] = useSessionStorage(
+    "my-key",
+    "default-value"
+  );
 
   return (
     <div>
@@ -55,10 +58,10 @@ interface User {
 }
 
 function UserProfile() {
-  const [user, setUser] = useSessionStorage<User>('user', {
+  const [user, setUser] = useSessionStorage<User>("user", {
     id: 0,
-    name: '',
-    email: ''
+    name: "",
+    email: "",
   });
 
   return (
@@ -73,20 +76,20 @@ function UserProfile() {
 ### With Validation
 
 ```tsx
-const [count, setCount] = useSessionStorage('count', 0, {
+const [count, setCount] = useSessionStorage("count", 0, {
   validator: (value) => {
-    if (typeof value !== 'number') throw new Error('Must be a number');
-    if (value < 0) throw new Error('Must be positive');
+    if (typeof value !== "number") throw new Error("Must be a number");
+    if (value < 0) throw new Error("Must be positive");
     return value;
-  }
+  },
 });
 ```
 
 ### With Debouncing
 
 ```tsx
-const [text, setText] = useSessionStorage('text', '', {
-  debounceMs: 500 // Wait 500ms before writing to storage
+const [text, setText] = useSessionStorage("text", "", {
+  debounceMs: 500, // Wait 500ms before writing to storage
 });
 ```
 
@@ -110,17 +113,18 @@ interface UseSessionStorageOptions<T> {
 Listen to storage changes across tabs and windows:
 
 ```tsx
-const [theme, setTheme] = useSessionStorage('theme', 'light');
+const [theme, setTheme] = useSessionStorage("theme", "light");
 
 // Automatically syncs when changed in other tabs
 useEffect(() => {
-  console.log('Theme changed to:', theme);
+  console.log("Theme changed to:", theme);
 }, [theme]);
 ```
 
 ## 🛡️ Error Handling
 
 The hook provides comprehensive error handling for:
+
 - JSON parsing errors
 - Storage quota exceeded
 - Invalid values
@@ -131,7 +135,11 @@ The hook provides comprehensive error handling for:
 ### Return Value
 
 ```tsx
-const [value, setValue, actions] = useSessionStorage(key, defaultValue, options);
+const [value, setValue, actions] = useSessionStorage(
+  key,
+  defaultValue,
+  options
+);
 ```
 
 - `value`: Current value from sessionStorage

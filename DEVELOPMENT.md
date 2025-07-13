@@ -3,15 +3,18 @@
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js >= 14.0.0
 - npm or yarn
 
 ### Installation
+
 ```bash
 npm install
 ```
 
 ### Development Scripts
+
 ```bash
 # Start development with Storybook
 npm run storybook
@@ -67,6 +70,7 @@ src/
 ## Development Guidelines
 
 ### Code Style
+
 - Use TypeScript for all source files
 - Follow ESLint configuration
 - Use Prettier for code formatting
@@ -74,18 +78,21 @@ src/
 - Maintain 100% test coverage
 
 ### Testing
+
 - Write unit tests for all functionality
 - Use React Testing Library for component tests
 - Test edge cases and error scenarios
 - Mock sessionStorage for testing
 
 ### Documentation
+
 - Update README.md for new features
 - Add Storybook stories for new functionality
 - Update CHANGELOG.md following semantic versioning
 - Include TypeScript examples in documentation
 
 ### Performance Considerations
+
 - Use debouncing for frequent updates
 - Implement proper cleanup in useEffect
 - Avoid unnecessary re-renders
@@ -114,19 +121,23 @@ src/
 ## Architecture
 
 ### Hook Design
+
 The useSessionStorage hook is designed with the following principles:
+
 - **Separation of Concerns**: Storage logic, serialization, and validation are separate
 - **Error Handling**: Comprehensive error handling with proper error types
 - **Performance**: Debounced updates and efficient state management
 - **Type Safety**: Full TypeScript support with proper generics
 
 ### Storage Strategy
+
 - Uses native sessionStorage API
 - Automatic JSON serialization/deserialization
 - Fallback to default values on errors
 - Cross-tab synchronization using storage events
 
 ### State Management
+
 - Internal state for current value
 - Loading states for async operations
 - Error states for failed operations

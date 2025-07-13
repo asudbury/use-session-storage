@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx prettier --write "src/**/*.{ts,tsx}" "docs/**/*.md"
-npx eslint src --ext .ts,.tsx --fix 
+npx prettier --write .
+npx eslint . --ext .ts,.tsx --fix

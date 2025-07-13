@@ -1,14 +1,17 @@
-import React from 'react';
-import useSessionStorage from './src/useSessionStorage';
+import React from "react";
+import useSessionStorage from "./src/useSessionStorage";
 
 // Example component to demonstrate the hook
 const ExampleComponent: React.FC = () => {
-  const [name, setName, { loading, error, remove, reset }] = useSessionStorage('example-name', 'World');
+  const [name, setName, { loading, error, remove, reset }] = useSessionStorage(
+    "example-name",
+    "World"
+  );
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h2>useSessionStorage Example</h2>
-      <div style={{ marginBottom: '10px' }}>
+      <div style={{ marginBottom: "10px" }}>
         <label htmlFor="name-input">Name: </label>
         <input
           id="name-input"
@@ -16,11 +19,11 @@ const ExampleComponent: React.FC = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={loading}
-          style={{ padding: '5px', marginLeft: '10px' }}
+          style={{ padding: "5px", marginLeft: "10px" }}
         />
       </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ marginRight: '10px' }}>
+      <div style={{ marginBottom: "10px" }}>
+        <button onClick={remove} style={{ marginRight: "10px" }}>
           Remove
         </button>
         <button onClick={reset}>Reset to Default</button>
@@ -28,8 +31,8 @@ const ExampleComponent: React.FC = () => {
       <div>
         <strong>Hello, {name}!</strong>
       </div>
-      {loading && <div style={{ color: 'blue' }}>Loading...</div>}
-      {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}
+      {loading && <div style={{ color: "blue" }}>Loading...</div>}
+      {error && <div style={{ color: "red" }}>Error: {error.message}</div>}
     </div>
   );
 };
