@@ -287,7 +287,9 @@ export const storyStyles = {
 }
 
 // Helper functions for combining styles
-export const combineStyles = (...styles: Array<Record<string, unknown>>): Record<string, unknown> => {
+export const combineStyles = (
+  ...styles: Array<Record<string, unknown>>
+): Record<string, unknown> => {
   return Object.assign({}, ...styles)
 }
 
