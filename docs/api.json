@@ -1,0 +1,46 @@
+{
+  "interfaces": [
+    {
+      "name": "UseSessionStorageOptions<T>",
+      "description": "Configuration options for the useSessionStorage hook\n@template T - The type of the value stored in session storage",
+      "properties": [
+        {
+          "name": "serializer",
+          "type": "{",
+          "optional": true,
+          "description": "Custom serializer for converting values to/from strings @default { parse: JSON.parse, stringify: JSON.stringify }"
+        },
+        {
+          "name": "validator",
+          "type": "(value: any) => T",
+          "optional": true,
+          "description": "Function to parse a string value from session storage */ Function to stringify a value for session storage */ Optional validator function to validate parsed values @param value - The parsed value to validate @returns The validated value"
+        },
+        {
+          "name": "debounceMs",
+          "type": "number",
+          "optional": true,
+          "description": "Debounce delay in milliseconds for write operations @default 0"
+        },
+        {
+          "name": "syncAcrossInstances",
+          "type": "boolean",
+          "optional": true,
+          "description": "Whether to sync changes across multiple instances/tabs @default true"
+        },
+        {
+          "name": "onError",
+          "type": "(error: Error) => void",
+          "optional": true,
+          "description": "Error handler callback @param error - The error that occurred"
+        }
+      ]
+    },
+    {
+      "name": "UseSessionStorageActions",
+      "description": "Actions and state information returned by the useSessionStorage hook",
+      "properties": []
+    }
+  ],
+  "hook": null
+}

@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import useSessionStorage from '../useSessionStorage';
-import { getButtonStyle, storyStyles } from './shared/storyStyles';
+import type { Meta, StoryObj } from "@storybook/react";
+import useSessionStorage from "../useSessionStorage";
+import { getButtonStyle, storyStyles } from "./shared/storyStyles";
 
 const meta: Meta = {
-  title: 'Custom Serializers',
+  title: "Custom Serializers",
   parameters: {
     docs: {
       description: {
-        component: 'Shows custom serialization for Date objects and other special data types that require custom handling.',
+        component:
+          "Shows custom serialization for Date objects and other special data types that require custom handling.",
       },
     },
   },
@@ -22,11 +23,8 @@ const CustomSerializerExample = () => {
     stringify: (value: Date) => value.toISOString(),
   };
 
-  const [lastLogin, setLastLogin, { loading, error, remove, reset }] = useSessionStorage(
-    'last-login',
-    new Date(),
-    { serializer: dateSerializer }
-  );
+  const [lastLogin, setLastLogin, { loading, error, remove, reset }] =
+    useSessionStorage("last-login", new Date(), { serializer: dateSerializer });
 
   const updateLoginTime = () => {
     setLastLogin(new Date());
@@ -37,22 +35,25 @@ const CustomSerializerExample = () => {
 
   return (
     <div style={storyStyles.container}>
-        <div style={storyStyles.gradientHeader}>
+      <div style={storyStyles.gradientHeader}>
         <h1 style={storyStyles.gradientHeaderTitle}>Custom Date Serializer</h1>
       </div>
-      <div style={{ marginBottom: '10px' }}>
+      <div style={{ marginBottom: "10px" }}>
         <strong>Last Login:</strong> {lastLogin.toLocaleString()}
       </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={updateLoginTime} style={getButtonStyle('primary')}>
+      <div style={{ marginBottom: "10px" }}>
+        <button onClick={updateLoginTime} style={getButtonStyle("primary")}>
           Update Login Time
         </button>
       </div>
       <div>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+        <button
+          onClick={remove}
+          style={{ ...getButtonStyle("secondary"), marginRight: "10px" }}
+        >
           Remove
         </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
+        <button onClick={reset} style={getButtonStyle("secondary")}>
           Reset to Default
         </button>
       </div>
