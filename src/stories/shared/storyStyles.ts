@@ -10,7 +10,7 @@ export const storyStyles = {
     color: '#333',
     maxWidth: '1200px',
     margin: '0 auto', // Centered with no top/bottom margin
-    border: 'none' // Explicit no border
+    border: 'none', // Explicit no border
   },
 
   // Page title
@@ -21,7 +21,7 @@ export const storyStyles = {
     color: '#1a1a1a',
     borderBottom: '2px solid #e9ecef',
     paddingBottom: '12px',
-    textAlign: 'left' as const
+    textAlign: 'left' as const,
   },
 
   // Gradient header (like Introduction) - standardized margins, padding, borders
@@ -33,7 +33,7 @@ export const storyStyles = {
     borderRadius: '12px',
     textAlign: 'left' as const,
     color: 'white',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
   },
 
   gradientHeaderTitle: {
@@ -42,7 +42,7 @@ export const storyStyles = {
     fontWeight: '700',
     letterSpacing: '-1px',
     border: 'none', // Explicit no border
-    textAlign: 'left' as const
+    textAlign: 'left' as const,
   },
 
   gradientHeaderSubtitle: {
@@ -54,7 +54,7 @@ export const storyStyles = {
     marginLeft: 'auto',
     marginRight: 'auto',
     lineHeight: '1.5',
-    textAlign: 'left' as const
+    textAlign: 'left' as const,
   },
 
   // Page description
@@ -62,7 +62,7 @@ export const storyStyles = {
     fontSize: '16px',
     color: '#6c757d',
     marginBottom: '32px',
-    lineHeight: '1.5'
+    lineHeight: '1.5',
   },
 
   // Card containers - standardized margins, padding, borders
@@ -72,7 +72,7 @@ export const storyStyles = {
     border: '1px solid #dee2e6', // Consistent border
     borderRadius: '8px',
     backgroundColor: '#ffffff',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   },
 
   // Card headers
@@ -84,12 +84,12 @@ export const storyStyles = {
     textAlign: 'left' as const,
     display: 'flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: '8px',
   },
 
   // Form elements
   formGroup: {
-    marginBottom: '20px'
+    marginBottom: '20px',
   },
 
   label: {
@@ -97,7 +97,7 @@ export const storyStyles = {
     marginBottom: '8px',
     fontWeight: '500',
     color: '#495057',
-    fontSize: '14px'
+    fontSize: '14px',
   },
 
   input: {
@@ -107,7 +107,7 @@ export const storyStyles = {
     border: '1px solid #ced4da',
     fontSize: '14px',
     transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
   },
 
   textarea: {
@@ -118,7 +118,7 @@ export const storyStyles = {
     fontSize: '14px',
     resize: 'vertical' as const,
     fontFamily: 'inherit',
-    transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out'
+    transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
   },
 
   select: {
@@ -128,7 +128,7 @@ export const storyStyles = {
     border: '1px solid #ced4da',
     fontSize: '14px',
     backgroundColor: '#ffffff',
-    transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out'
+    transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
   },
 
   // Buttons
@@ -142,33 +142,33 @@ export const storyStyles = {
     transition: 'all 0.15s ease-in-out',
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: '8px',
   },
 
   buttonPrimary: {
     backgroundColor: '#007bff',
-    color: '#ffffff'
+    color: '#ffffff',
   },
 
   buttonSecondary: {
     backgroundColor: '#6c757d',
-    color: '#ffffff'
+    color: '#ffffff',
   },
 
   buttonDanger: {
     backgroundColor: '#dc3545',
-    color: '#ffffff'
+    color: '#ffffff',
   },
 
   buttonSuccess: {
     backgroundColor: '#28a745',
-    color: '#ffffff'
+    color: '#ffffff',
   },
 
   buttonDisabled: {
     backgroundColor: '#e9ecef',
     color: '#6c757d',
-    cursor: 'not-allowed'
+    cursor: 'not-allowed',
   },
 
   // Status displays
@@ -178,7 +178,7 @@ export const storyStyles = {
     borderRadius: '6px',
     color: '#155724',
     border: '1px solid #c3e6cb',
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
 
   errorBox: {
@@ -187,7 +187,7 @@ export const storyStyles = {
     borderRadius: '6px',
     color: '#721c24',
     border: '1px solid #f5c6cb',
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
 
   warningBox: {
@@ -196,7 +196,7 @@ export const storyStyles = {
     borderRadius: '6px',
     color: '#856404',
     border: '1px solid #ffeaa7',
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
 
   infoBox: {
@@ -205,7 +205,7 @@ export const storyStyles = {
     borderRadius: '6px',
     color: '#0c5460',
     border: '1px solid #bee5eb',
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
 
   // Code display
@@ -217,7 +217,7 @@ export const storyStyles = {
     fontSize: '13px',
     overflowX: 'auto' as const,
     border: '1px solid #e9ecef',
-    lineHeight: '1.4'
+    lineHeight: '1.4',
   },
 
   // Logs container
@@ -230,7 +230,7 @@ export const storyStyles = {
     fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace',
     fontSize: '13px',
     border: '1px solid #e9ecef',
-    lineHeight: '1.4'
+    lineHeight: '1.4',
   },
 
   // History/list items
@@ -239,87 +239,87 @@ export const storyStyles = {
     margin: '8px 0',
     borderRadius: '6px',
     fontSize: '14px',
-    border: '1px solid #e9ecef'
+    border: '1px solid #e9ecef',
   },
 
   listItemSuccess: {
     backgroundColor: '#d4edda',
-    borderColor: '#c3e6cb'
+    borderColor: '#c3e6cb',
   },
 
   listItemError: {
     backgroundColor: '#f8d7da',
-    borderColor: '#f5c6cb'
+    borderColor: '#f5c6cb',
   },
 
   // Utility classes
   flexBetween: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   flexCenter: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: '8px',
   },
 
   textMuted: {
-    color: '#6c757d'
+    color: '#6c757d',
   },
 
   textBold: {
-    fontWeight: '600'
+    fontWeight: '600',
   },
 
   mb16: {
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
 
   mb24: {
-    marginBottom: '24px'
+    marginBottom: '24px',
   },
 
   mt16: {
-    marginTop: '16px'
-  }
-}
+    marginTop: '16px',
+  },
+};
 
 // Helper functions for combining styles
 export const combineStyles = (
   ...styles: Array<Record<string, unknown>>
 ): Record<string, unknown> => {
-  return Object.assign({}, ...styles)
-}
+  return Object.assign({}, ...styles);
+};
 
 export const getButtonStyle = (
   variant: 'primary' | 'secondary' | 'danger' | 'success',
   disabled: boolean = false
 ): Record<string, unknown> => {
-  const baseStyle = storyStyles.button
-  let variantStyle
+  const baseStyle = storyStyles.button;
+  let variantStyle;
 
   if (disabled) {
-    variantStyle = storyStyles.buttonDisabled
+    variantStyle = storyStyles.buttonDisabled;
   } else {
     switch (variant) {
       case 'primary':
-        variantStyle = storyStyles.buttonPrimary
-        break
+        variantStyle = storyStyles.buttonPrimary;
+        break;
       case 'secondary':
-        variantStyle = storyStyles.buttonSecondary
-        break
+        variantStyle = storyStyles.buttonSecondary;
+        break;
       case 'danger':
-        variantStyle = storyStyles.buttonDanger
-        break
+        variantStyle = storyStyles.buttonDanger;
+        break;
       case 'success':
-        variantStyle = storyStyles.buttonSuccess
-        break
+        variantStyle = storyStyles.buttonSuccess;
+        break;
       default:
-        variantStyle = storyStyles.buttonPrimary
+        variantStyle = storyStyles.buttonPrimary;
     }
   }
 
-  return combineStyles(baseStyle, variantStyle)
-}
+  return combineStyles(baseStyle, variantStyle);
+};
