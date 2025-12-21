@@ -14,7 +14,6 @@ A powerful, production-ready React hook for SessionStorage management with compr
 >
 > **This is the canonical knowledge base for the project. If you're contributing, maintaining, or deploying, start here!**
 
-
 ## 🎯 Key Features
 
 - **🔄 Automatic Serialization**: JSON serialization/deserialization with error handling
