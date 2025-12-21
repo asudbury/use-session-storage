@@ -162,7 +162,4 @@ Contributions are welcome! Please feel free to submit a [Pull Request](https://g
 
 If you have any questions or need help, please [Open an issue](https://github.com/asudbury/use-session-storage/issues) or use the links above.
 
-
-
-
 Made with ❤️ for the React community

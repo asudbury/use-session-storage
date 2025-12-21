@@ -181,9 +181,7 @@ const IntroductionComponent = () => {
           A powerful React hook for SessionStorage management with comprehensive serialization
           support and type safety
         </p>
-        <p style={{ fontSize: '13px', marginTop: '10px' }}>
-          Version {pkg.version}
-        </p>
+        <p style={{ fontSize: '13px', marginTop: '10px' }}>Version {pkg.version}</p>
       </div>
       {/* Installation Section */}
       <div
@@ -1266,7 +1264,6 @@ function UserProfile() {
           <li>Validation failures</li>
         </ul>
       </div>
-
     </div>
   );
 };

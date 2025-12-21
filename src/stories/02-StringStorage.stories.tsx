@@ -37,7 +37,7 @@ const StringStorageExample = () => {
           Basic string storage example using useSessionStorage.
         </div>
       </div>
-      <div style={storyStyles.card}> 
+      <div style={storyStyles.card}>
         <label>Name: </label>
         <input
           type="text"

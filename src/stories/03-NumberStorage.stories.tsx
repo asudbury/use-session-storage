@@ -36,11 +36,11 @@ const NumberStorageExample = () => {
         </div>
       </div>
       <div style={storyStyles.card}>
-          <label>Age: </label>
-          <input
-            type="number"
-            value={inputValue}
-            onChange={(e) => {
+        <label>Age: </label>
+        <input
+          type="number"
+          value={inputValue}
+          onChange={(e) => {
             setInputValue(e.target.value);
           }}
           disabled={loading}
