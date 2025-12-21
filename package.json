@@ -1,5 +1,5 @@
 {
-  "name": "use-session-storage",
+  "name": "@asudbury/use-session-storage",
   "version": "1.0.0",
   "description": "A powerful React hook for SessionStorage management with TypeScript support, serialization, and comprehensive event handling",
   "main": "dist/index.cjs.js",

@@ -2,6 +2,19 @@
 
 A powerful, production-ready React hook for SessionStorage management with comprehensive serialization support, type safety, and event handling.
 
+## 📚 DeepWiki Project Knowledge Base
+
+> **Explore the full documentation, architecture, and deep technical notes for this project on DeepWiki:**
+>
+> [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asudbury/use-session-storage)
+>
+> - Comprehensive guides, diagrams, and design decisions
+> - Contributor onboarding and advanced usage tips
+> - Maintainer notes, troubleshooting, and best practices
+>
+> **This is the canonical knowledge base for the project. If you're contributing, maintaining, or deploying, start here!**
+
+
 ## 🎯 Key Features
 
 - **🔄 Automatic Serialization**: JSON serialization/deserialization with error handling
@@ -18,13 +31,13 @@ A powerful, production-ready React hook for SessionStorage management with compr
 ## 📦 Installation
 
 ```bash
-npm install use-session-storage
+npm i @asudbury/use-session-storage
 ```
 
 ## 🚀 Quick Start
 
 ```tsx
-import useSessionStorage from 'use-session-storage';
+import useSessionStorage from '@asudbury/use-session-storage';
 
 function MyComponent() {
   const [value, setValue, { loading, error, remove }] = useSessionStorage(

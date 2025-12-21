@@ -49,13 +49,13 @@ A powerful, production-ready React hook for SessionStorage management with compr
 ## 📦 Installation
 
 \`\`\`bash
-npm install use-session-storage
+npm install @asudbury/use-session-storage
 \`\`\`
 
 ## 🚀 Quick Start
 
 \`\`\`tsx
-import useSessionStorage from 'use-session-storage';
+import useSessionStorage from '@asudbury/use-session-storage';
 
 function MyComponent() {
   const [value, setValue, { loading, error, remove }] = useSessionStorage('my-key', 'default-value');
@@ -245,11 +245,11 @@ const IntroductionComponent = () => {
             }}
           >
             <span style={{ marginRight: '10px', color: '#666' }}>$</span>
-            npm install use-session-storage
+            npm install @asudbury/use-session-storage
           </pre>
           <button
             onClick={() => {
-              navigator.clipboard.writeText('npm install use-session-storage');
+              navigator.clipboard.writeText('npm install @asudbury/use-session-storage');
               // Show a brief success feedback
               const btn = document.activeElement as HTMLButtonElement;
               const originalHTML = btn.innerHTML;
@@ -960,7 +960,7 @@ const IntroductionComponent = () => {
             overflow: 'auto',
           }}
         >
-          {`import useSessionStorage from 'use-session-storage';
+          {`import useSessionStorage from '@asudbury/use-session-storage';
 
 function MyComponent() {
   const [value, setValue, { loading, error, remove }] = useSessionStorage('my-key', 'default-value');
