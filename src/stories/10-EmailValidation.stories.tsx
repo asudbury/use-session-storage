@@ -45,7 +45,7 @@ const EmailValidationExample = () => {
           Email validation example using useSessionStorage with a custom validator.
         </div>
       </div>
-      <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+      <div style={storyStyles.card}>
         <label>Email: </label>
         <input
           type="email"
@@ -59,17 +59,17 @@ const EmailValidationExample = () => {
         <button onClick={handleSubmit} style={{ ...getButtonStyle('primary'), marginLeft: '10px' }}>
           Update
         </button>
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
-      </div>
-      <div>
-        <strong>Current Email:</strong> {email}
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
+        <div>
+          <strong>Current Email:</strong> {email}
+        </div>
       </div>
       {loading && <div style={{ color: 'blue' }}>Loading...</div>}
       {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}

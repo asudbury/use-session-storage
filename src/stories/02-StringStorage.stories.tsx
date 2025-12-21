@@ -37,7 +37,7 @@ const StringStorageExample = () => {
           Basic string storage example using useSessionStorage.
         </div>
       </div>
-      <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+      <div style={storyStyles.card}> 
         <label>Name: </label>
         <input
           type="text"
@@ -51,16 +51,14 @@ const StringStorageExample = () => {
         <button onClick={handleSubmit} style={getButtonStyle('primary')}>
           Update
         </button>
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
-      </div>
-      <div>
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
         <strong>Current Name:</strong> {name}
       </div>
       {loading && <div style={{ color: 'blue' }}>Loading...</div>}

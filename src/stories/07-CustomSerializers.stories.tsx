@@ -41,21 +41,21 @@ const CustomSerializerExample = () => {
       <div style={storyStyles.gradientHeader}>
         <h1 style={storyStyles.gradientHeaderTitle}>Custom Date Serializer</h1>
       </div>
-      <div style={{ marginBottom: '10px' }}>
+      <div style={storyStyles.card}>
         <strong>Last Login:</strong> {lastLogin.toLocaleString()}
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={updateLoginTime} style={getButtonStyle('primary')}>
-          Update Login Time
-        </button>
-      </div>
-      <div>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={updateLoginTime} style={getButtonStyle('primary')}>
+            Update Login Time
+          </button>
+        </div>
+        <div>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
       </div>
     </div>
   );

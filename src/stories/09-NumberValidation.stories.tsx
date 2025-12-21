@@ -52,7 +52,7 @@ const NumberValidationExample = () => {
           Number validation with range constraints. Demonstrates type checking and range validation.
         </div>
       </div>
-      <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+      <div style={storyStyles.card}>
         <label>Score (0-100): </label>
         <input
           type="number"
@@ -66,17 +66,17 @@ const NumberValidationExample = () => {
         <button onClick={handleSubmit} style={{ ...getButtonStyle('primary'), marginLeft: '10px' }}>
           Update
         </button>
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
-      </div>
-      <div>
-        <strong>Current Score:</strong> {score}
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
+        <div>
+          <strong>Current Score:</strong> {score}
+        </div>
       </div>
       {loading && <div style={{ color: 'blue' }}>Loading...</div>}
       {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}

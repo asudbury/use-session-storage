@@ -18,11 +18,16 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
-          '1. Introduction',
-          '2. Basic Usage',
-          '3. Advanced Usage',
-          '4. Validation',
-          '5. Performance',
+          'Introduction',
+          'String Storage',
+          'Number Storage',
+          'Boolean Storage',
+          'Array Storage',
+          'Complex Object Storage',
+          'Custom Serializers',
+          'Multi Instance Sync',
+          'Number Validation',
+          'Email Validation',
         ],
       },
     },

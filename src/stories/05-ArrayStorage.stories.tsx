@@ -40,7 +40,7 @@ const ArrayStorageExample = () => {
           Basic array storage example using useSessionStorage.
         </div>
       </div>
-      <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+      <div style={storyStyles.card}>
         <label>New Item: </label>
         <input
           type="text"
@@ -54,17 +54,17 @@ const ArrayStorageExample = () => {
         <button onClick={handleAdd} style={getButtonStyle('primary')}>
           Add
         </button>
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
-      </div>
-      <div>
-        <strong>Current Items:</strong> {items.join(', ')}
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
+        <div>
+          <strong>Current Items:</strong> {items.join(', ')}
+        </div>
       </div>
       {loading && <div style={{ color: 'blue' }}>Loading...</div>}
       {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}

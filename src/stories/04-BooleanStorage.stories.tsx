@@ -36,7 +36,7 @@ const BooleanStorageExample = () => {
           Basic boolean storage example using useSessionStorage.
         </div>
       </div>
-      <div style={{ marginBottom: '10px', marginTop: '20px' }}>
+      <div style={storyStyles.card}>
         <label>Active: </label>
         <input
           type="checkbox"
@@ -45,17 +45,17 @@ const BooleanStorageExample = () => {
           disabled={loading}
           style={{ marginLeft: '10px' }}
         />
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
-          Remove
-        </button>
-        <button onClick={reset} style={getButtonStyle('secondary')}>
-          Reset to Default
-        </button>
-      </div>
-      <div>
-        <strong>Current State:</strong> {isActive ? 'Active' : 'Inactive'}
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <button onClick={remove} style={{ ...getButtonStyle('secondary'), marginRight: '10px' }}>
+            Remove
+          </button>
+          <button onClick={reset} style={getButtonStyle('secondary')}>
+            Reset to Default
+          </button>
+        </div>
+        <div>
+          <strong>Current State:</strong> {isActive ? 'Active' : 'Inactive'}
+        </div>
       </div>
       {loading && <div style={{ color: 'blue' }}>Loading...</div>}
       {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}

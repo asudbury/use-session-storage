@@ -1,5 +1,9 @@
+// 01-Introduction.stories.tsx
+// This file contains stories for the Introduction component of the useSessionStorage hook.
+// It showcases the capabilities and usage of the hook.
 import type { Meta, StoryObj } from '@storybook/react';
 import { storyStyles } from './shared/storyStyles';
+import pkg from '../../package.json';
 
 /**
  * Introduction to useSessionStorage hook - A comprehensive React hook for SessionStorage management.
@@ -20,7 +24,7 @@ import { storyStyles } from './shared/storyStyles';
  * @returns Introduction component showcasing the hook's capabilities
  */
 const meta: Meta = {
-  title: ' Introduction',
+  title: 'Introduction',
   parameters: {
     docs: {
       description: {
@@ -172,9 +176,13 @@ const IntroductionComponent = () => {
       {/* Header Section */}
       <div style={storyStyles.gradientHeader}>
         <h1 style={storyStyles.gradientHeaderTitle}>useSessionStorage</h1>
+
         <p style={storyStyles.gradientHeaderSubtitle}>
           A powerful React hook for SessionStorage management with comprehensive serialization
           support and type safety
+        </p>
+        <p style={{ fontSize: '13px', marginTop: '10px' }}>
+          Version {pkg.version}
         </p>
       </div>
       {/* Installation Section */}
@@ -1258,6 +1266,7 @@ function UserProfile() {
           <li>Validation failures</li>
         </ul>
       </div>
+
     </div>
   );
 };

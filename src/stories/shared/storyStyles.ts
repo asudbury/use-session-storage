@@ -27,7 +27,7 @@ export const storyStyles = {
   // Gradient header (like Introduction) - standardized margins, padding, borders
   gradientHeader: {
     margin: '0 0 2rem 0', // Consistent bottom margin
-    padding: '40px 32px', // Consistent horizontal padding
+    padding: '10px 16px', // Consistent horizontal padding
     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     border: 'none', // Explicit no border
     borderRadius: '12px',

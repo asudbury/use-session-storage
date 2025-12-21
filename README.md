@@ -148,4 +148,21 @@ Full TypeScript support with proper type inference and IntelliSense for complete
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT © Adrian Sudbury
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a [Pull Request](https://github.com/asudbury/use-session-storage/pulls).
+
+- [Open a Pull Request](https://github.com/asudbury/use-session-storage/pulls)
+- [View All Issues](https://github.com/asudbury/use-session-storage/issues)
+- [Create a New Issue](https://github.com/asudbury/use-session-storage/issues/new)
+
+## 📞 Support
+
+If you have any questions or need help, please [Open an issue](https://github.com/asudbury/use-session-storage/issues) or use the links above.
+
+
+
+
+Made with ❤️ for the React community
