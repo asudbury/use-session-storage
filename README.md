@@ -1,3 +1,5 @@
+<img src="./public/hero-image.png">
+
 # useSessionStorage
 
 A powerful, production-ready React hook for SessionStorage management with comprehensive serialization support, type safety, and event handling.
@@ -8,11 +10,6 @@ A powerful, production-ready React hook for SessionStorage management with compr
 >
 > [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asudbury/use-session-storage)
 >
-> - Comprehensive guides, diagrams, and design decisions
-> - Contributor onboarding and advanced usage tips
-> - Maintainer notes, troubleshooting, and best practices
->
-> **This is the canonical knowledge base for the project. If you're contributing, maintaining, or deploying, start here!**
 
 ## 🎯 Key Features
 
