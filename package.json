@@ -93,7 +93,7 @@
     "jsdoc-to-markdown": "^9.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.5.0",
+    "storybook": "^10.1.11",
     "typescript": "^5.8.3",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.9.1",
