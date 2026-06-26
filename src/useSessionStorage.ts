@@ -197,6 +197,7 @@ const useDebounce = <T extends (...args: any[]) => void>(
   const debouncedCallback = useCallback(
     ((...args: Parameters<T>) => {
       if (delay <= 0) {
+        cancel()
         callbackRef.current(...args)
         return
       }
