@@ -13,10 +13,12 @@ const defaultValue: TestValue = { name: 'John', age: 30 };
 describe('useSessionStorage', () => {
   beforeEach(() => {
     sessionStorage.clear();
+    vi.useRealTimers();
   });
 
   afterEach(() => {
     vi.clearAllMocks();
+    vi.useRealTimers();
   });
 
   it('should initialize with default value if sessionStorage is empty', () => {
@@ -93,5 +95,58 @@ describe('useSessionStorage', () => {
       expect(onError).toHaveBeenCalled();
       expect(result.current[2].error).not.toBeNull();
     });
+  });
+
+  it('should sync state when the storage key changes', async () => {
+    sessionStorage.setItem('other-key', JSON.stringify({ name: 'Other', age: 45 }));
+
+    const { result, rerender } = renderHook(
+      ({ storageKey }) => useSessionStorage(storageKey, defaultValue),
+      { initialProps: { storageKey: key } }
+    );
+
+    rerender({ storageKey: 'other-key' });
+
+    await waitFor(() => {
+      expect(result.current[0]).toEqual({ name: 'Other', age: 45 });
+    });
+  });
+
+  it('should cancel a pending debounced write when remove is called', () => {
+    vi.useFakeTimers();
+
+    const { result } = renderHook(() =>
+      useSessionStorage(key, defaultValue, { debounceMs: 50 })
+    );
+
+    act(() => {
+      result.current[1]({ name: 'Pending', age: 55 });
+      result.current[2].remove();
+      vi.advanceTimersByTime(50);
+    });
+
+    expect(result.current[0]).toEqual(defaultValue);
+    expect(sessionStorage.getItem(key)).toBeNull();
+  });
+
+  it('should cleanup pending debounced writes on unmount', () => {
+    vi.useFakeTimers();
+
+    const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
+    const { result, unmount } = renderHook(() =>
+      useSessionStorage(key, defaultValue, { debounceMs: 50 })
+    );
+
+    act(() => {
+      result.current[1]({ name: 'Late', age: 99 });
+    });
+
+    unmount();
+
+    act(() => {
+      vi.advanceTimersByTime(50);
+    });
+
+    expect(setItemSpy).not.toHaveBeenCalled();
   });
 });

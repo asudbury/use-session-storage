@@ -73,6 +73,13 @@ const defaultSerializer = {
   stringify: JSON.stringify
 }
 
+const SESSION_STORAGE_CHANGE_EVENT = 'useSessionStorage:change'
+
+interface SessionStorageChangeDetail<T> {
+  key: string
+  value: T | null
+}
+
 /**
  * Sets a value in session storage with error handling and dispatches a custom event for cross-instance sync.
  *
@@ -124,7 +131,7 @@ const setStorageValue = <T>(key: string, value: T, serializer: typeof defaultSer
     const serializedValue = serializer.stringify(value)
     window.sessionStorage.setItem(key, serializedValue)
     window.dispatchEvent(
-      new CustomEvent('sessionStorageChange', {
+      new CustomEvent<SessionStorageChangeDetail<T>>(SESSION_STORAGE_CHANGE_EVENT, {
         detail: { key, value }
       })
     )
@@ -149,7 +156,7 @@ const removeStorageValue = (key: string): void => {
   try {
     window.sessionStorage.removeItem(key)
     window.dispatchEvent(
-      new CustomEvent('sessionStorageChange', {
+      new CustomEvent<SessionStorageChangeDetail<never>>(SESSION_STORAGE_CHANGE_EVENT, {
         detail: { key, value: null }
       })
     )
@@ -166,21 +173,47 @@ const removeStorageValue = (key: string): void => {
  * @param delay - The debounce delay in milliseconds
  * @returns The debounced function
  */
-const useDebounce = <T extends (...args: any[]) => any>(callback: T, delay: number): T => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+const useDebounce = <T extends (...args: any[]) => void>(
+  callback: T,
+  delay: number
+): { debouncedCallback: T, cancel: () => void } => {
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const callbackRef = useRef(callback)
 
-  return useCallback(
+  callbackRef.current = callback
+
+  const cancel = useCallback(() => {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }, [])
+
+  useEffect(() => cancel, [cancel])
+  useEffect(() => {
+    cancel()
+  }, [callback, delay, cancel])
+
+  const debouncedCallback = useCallback(
     ((...args: Parameters<T>) => {
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current)
+      if (delay <= 0) {
+        callbackRef.current(...args)
+        return
       }
 
+      cancel()
       timeoutRef.current = setTimeout(() => {
-        callback(...args)
+        timeoutRef.current = null
+        callbackRef.current(...args)
       }, delay)
     }) as T,
-    [callback, delay]
+    [delay, cancel]
   )
+
+  return {
+    debouncedCallback,
+    cancel
+  }
 }
 
 /**
@@ -222,7 +255,7 @@ export function useSessionStorage<T> (
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
 
-  const isInitialMount = useRef(true)
+  const hasMounted = useRef(false)
   const onErrorRef = useRef(onError)
   onErrorRef.current = onError
 
@@ -258,7 +291,10 @@ export function useSessionStorage<T> (
   /**
    * Debounced version of setValueInternal
    */
-  const debouncedSetValue = useDebounce(setValueInternal, debounceMs)
+  const { debouncedCallback: debouncedSetValue, cancel: cancelPendingSetValue } = useDebounce(
+    setValueInternal,
+    debounceMs
+  )
 
   /**
    * Public function to set a new value in session storage
@@ -295,6 +331,7 @@ export function useSessionStorage<T> (
    * Removes the value from session storage and resets to default
    */
   const remove = useCallback(() => {
+    cancelPendingSetValue()
     try {
       setLoading(true)
       setError(null)
@@ -305,54 +342,56 @@ export function useSessionStorage<T> (
     } finally {
       setLoading(false)
     }
-  }, [key, defaultValue, handleError])
+  }, [key, defaultValue, handleError, cancelPendingSetValue])
 
   /**
    * Resets the value to the default value
    */
   const reset = useCallback(() => {
+    cancelPendingSetValue()
     setValue(defaultValue)
-  }, [setValue, defaultValue])
+  }, [cancelPendingSetValue, setValue, defaultValue])
 
   // Effect to handle cross-instance synchronization
   useEffect(() => {
     if (!syncAcrossInstances) return
 
-    const handleStorageChange = (e: CustomEvent): void => {
-      const { key: changedKey, value } = e.detail
-      if (changedKey === key) {
-        if (value === null) {
-          setStoredValue(defaultValue)
-        } else {
-          try {
-            const validatedValue =
-              validator !== null && validator !== undefined ? validator(value) : value
-            setStoredValue(validatedValue as T)
-          } catch (err) {
-            handleError(err as Error)
-          }
+    const handleStorageChange = (event: Event): void => {
+      const customEvent = event as CustomEvent<SessionStorageChangeDetail<T>>
+      const detail = customEvent.detail
+
+      if (detail === undefined || detail.key !== key) {
+        return
+      }
+
+      const { value } = detail
+      if (value === null) {
+        setStoredValue(defaultValue)
+      } else {
+        try {
+          const validatedValue = validator !== null && validator !== undefined ? validator(value) : value
+          setStoredValue(validatedValue as T)
+        } catch (err) {
+          handleError(err as Error)
         }
       }
     }
 
-    window.addEventListener('sessionStorageChange', handleStorageChange as EventListener)
+    window.addEventListener(SESSION_STORAGE_CHANGE_EVENT, handleStorageChange)
     return () => {
-      window.removeEventListener('sessionStorageChange', handleStorageChange as EventListener)
+      window.removeEventListener(SESSION_STORAGE_CHANGE_EVENT, handleStorageChange)
     }
   }, [key, defaultValue, validator, syncAcrossInstances, handleError])
 
-  // Effect to sync with external changes to session storage
+  // Effect to re-read storage when configuration changes
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
+    if (!hasMounted.current) {
+      hasMounted.current = true
       return
     }
 
-    const currentValue = getStorageValue(key, defaultValue, serializer, validator)
-    if (currentValue !== storedValue) {
-      setStoredValue(currentValue)
-    }
-  }, [key, defaultValue, serializer, validator, storedValue])
+    setStoredValue(getStorageValue(key, defaultValue, serializer, validator))
+  }, [key, defaultValue, serializer, validator])
 
   return [
     storedValue,
