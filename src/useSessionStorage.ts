@@ -189,9 +189,10 @@ const useDebounce = <T extends (...args: any[]) => void>(
     }
   }, [])
 
-  useEffect(() => cancel, [cancel])
   useEffect(() => {
-    cancel()
+    return () => {
+      cancel()
+    }
   }, [callback, delay, cancel])
 
   const debouncedCallback = useCallback(
