@@ -370,7 +370,7 @@ export function useSessionStorage<T> (
       } else {
         try {
           const validatedValue = validator !== null && validator !== undefined ? validator(value) : value
-          setStoredValue(validatedValue as T)
+          setStoredValue(validatedValue)
         } catch (err) {
           handleError(err as Error)
         }
