@@ -172,7 +172,6 @@ If you have any questions or need help, please [Open an issue](https://github.co
 
 Made with ❤️ for the React community
 
-
 ## ❤️ Support My Work
 
 <a href="https://www.buymeacoffee.com/asudbury">
