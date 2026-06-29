@@ -171,3 +171,12 @@ Contributions are welcome! Please feel free to submit a [Pull Request](https://g
 If you have any questions or need help, please [Open an issue](https://github.com/asudbury/use-session-storage/issues) or use the links above.
 
 Made with ❤️ for the React community
+
+
+## ❤️ Support My Work
+
+<a href="https://www.buymeacoffee.com/asudbury">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+       alt="Buy Me A Coffee"
+       height="60">
+</a>
